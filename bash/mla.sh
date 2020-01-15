@@ -4,10 +4,10 @@ do
 IFS=','
 read -ra ADDR <<< "$items_id"
 for i in "${ADDR[@]}"; 
-do # access each element of array
+	do 
     title=$(curl -s "https://api.mercadolibre.com/items/$i" | jq -c '.title')
     category_id=$(curl -s "https://api.mercadolibre.com/items/$i" | jq -c '.category_id' | sed -e 's/"//g')
     category_name=$(curl -s "https://api.mercadolibre.com/categories/$category_id" | jq -c '.name')
-    echo $i" "$title" "$category_id" "$category_name
-done
+	done
+	echo -e $i"|"$title"|"$category_id"|"$category_name>mla.log
 done
