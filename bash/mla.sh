@@ -9,5 +9,5 @@ for i in "${ADDR[@]}";
     category_id=$(curl -s "https://api.mercadolibre.com/items/$i" | jq -c '.category_id' | sed -e 's/"//g')
     category_name=$(curl -s "https://api.mercadolibre.com/categories/$category_id" | jq -c '.name')
 	done
-	echo -e $i"|"$title"|"$category_id"|"$category_name>mla.log
+	echo -e $i"|"$title"|"$category_id"|"$category_name>>mla.log
 done
